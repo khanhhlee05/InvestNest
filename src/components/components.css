@@ -1,0 +1,57 @@
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    width: 100%;
+    padding: 20px 20px 20px 20px
+
+}
+
+.post-card-container {
+    width: 100%;
+    max-width: 1200px; /* Limit max width for readability */
+    margin: 0 auto;
+    padding: 0 20px; /* Padding to avoid touching the edges */
+}
+
+.post-card {
+    width: 100%; /* Full width of the container */
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #2a2a2a;
+    color: #ddd;
+    border-radius: 8px;
+    border: 1px solid #444;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+    text-align: left;
+}
+
+
+.post-contents h1 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 10px 0;
+    color: #fff; 
+
+}
+
+.post-header h2 {
+    font-size: 16px;
+    color: #ddd;
+    margin: 10px 0;
+}
+
+.post-footer {
+    font-size: 14px;
+    color: #aaa; 
+    margin-top: 10px;
+}
+
+.post-card:hover {
+    border-color: #535bf2; 
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
