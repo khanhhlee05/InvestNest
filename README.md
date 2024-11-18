@@ -1,6 +1,6 @@
-# Web Development Final Project - *Khanh Le*
+# Web Development Final Project - *InvestNest*
 
-Submitted by: **InvestNest**
+Submitted by: **Khanh Le**
 
 This web app: **Social forum for investors**
 
