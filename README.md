@@ -53,7 +53,7 @@ GIF created with LiceCap
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+<a href="https://invest-nest-by-khanh-le.netlify.app/">Link to website</a>
 
 ## License
 
