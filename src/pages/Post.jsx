@@ -66,7 +66,7 @@ const Post = () => {
 
     const handleUpVote = async () => {
         await supabase
-            .from("Comments")
+            .from("Posts")
             .update({ upvotes: post.upvotes + 1 })
             .eq('id', id)
             .select()
