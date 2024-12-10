@@ -19,7 +19,7 @@ function App() {
     },
     {
       path: "/post/:id",
-      element: <Post />  
+      element: <Post />
     },
     {
       path: "/update/:id",
@@ -28,11 +28,11 @@ function App() {
   ])
 
 
-
   return (
     <>
       <nav>
         <h1>InvestNest</h1>
+    
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -40,7 +40,6 @@ function App() {
           <li>
             <Link to="/create">Create</Link>
           </li>
-
         </ul>
       </nav>
       <div className='main-container'>

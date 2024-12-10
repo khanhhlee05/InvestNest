@@ -280,16 +280,15 @@ button:hover {
 
 .filter {
     position: fixed;
-    top: 0;
+    top: 95px;
     left: 0;
     width: 100%;
-   
     color: #ddd;
     padding: 20px;
     background-color: #1a1a1a;
     z-index: 1000;
-    margin-top: 70px;
 }
+
 .post {
     margin-top: 250px;
 }
