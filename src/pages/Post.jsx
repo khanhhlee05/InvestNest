@@ -110,6 +110,30 @@ const Post = () => {
     }
   }
 
+  const isVideo = (url) => {
+    return url.match(/\.(mp4|webm|ogg)$/i);
+  };
+
+  const MediaComponent = () => {
+    const youtubeMatch = post.imageURL.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i);
+    if (youtubeMatch && youtubeMatch[1]) {
+      return (
+        <iframe
+          width="75%"
+          height="315"
+          src={`https://www.youtube.com/embed/${youtubeMatch[1]}`}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          title="YouTube video player"
+        ></iframe>
+      );
+    } else if (isVideo(post.imageURL)) {
+      return <video width="100%" controls src={post.imageURL} alt="Post video" />;
+    } else {
+      return <img src={post.imageURL} alt="Post" className="image" />;
+    }
+  };
 
 
 
@@ -208,14 +232,13 @@ const Post = () => {
             <h2>Posted {calculatedTime(post.created_at)} {calculatedTime(post.created_at) > 1 ? "hours" : "hour"} ago</h2>
             <h1>{post.title}</h1>
             <p>{post.body}</p>
-            <img src={post.imageURL} alt="postImage" />
-            <iframe
-              src= {post.imageURL}
-              title="postVid"
-              width="600"
-              height="400"
-              style={{ border: '1px solid black' }}
-            ></iframe>
+            
+            {post && post.imageURL ? (
+              <MediaComponent />
+            ) : (
+              <p>Loading media...</p>
+            )}
+
           </div>
           <div className="post-actions">
             <div className="upvote">
@@ -226,7 +249,6 @@ const Post = () => {
               <Link to={`/update/${id}`}>
                 <button>✏️</button>
               </Link>
-
               <button onClick={() => setIsModalOpen(true)}>🗑️</button>
             </div>
           </div>

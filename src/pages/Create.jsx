@@ -64,7 +64,7 @@ const Create = () => {
             <form>
                 <input type="text" placeholder="Title" value={title} onChange={handleChangeTitle}/>
                 <textarea placeholder="Body" value={body} onChange={handleChangeBody}></textarea>
-                <input type="text" placeholder="ImageURL" value={image} onChange={handleChangeImage}/>
+                <input type="text" placeholder="Image/Video URL" value={image} onChange={handleChangeImage}/>
                 <label for="type">Type:</label>
                 <select id="type" name="type" onChange={handleChangeType}>
                     <option value="Opinion">Opinion</option>
