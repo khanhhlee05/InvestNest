@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import PostCard from "../components/PostCard";
 import { supabase } from "../client";
+import "./Page.css"
 
 
-const Home = ({color}) => {
+const Home = ({ color }) => {
 
     const [posts, setPosts] = useState([]);
     const [mostRecent, setMostRecent] = useState([]);
     const [mostUpvoted, setMostUpvoted] = useState([]);
     const [bgColor, setBgColor] = useState("#1A1A1A")
+    const [loading, setLoading] = useState(true)
     useEffect(() => {
         const fetchPost = async () => {
             const { data } = await supabase
@@ -24,8 +26,9 @@ const Home = ({color}) => {
             setMostUpvoted(upvoted)
             setMostRecent(data)
             setPosts(data);
+            setLoading(false)
         }
-        
+
         fetchPost();
 
         if (color === 'default') {
@@ -60,7 +63,7 @@ const Home = ({color}) => {
 
     }
 
-    const handleSearch = (e) => {  
+    const handleSearch = (e) => {
         const search = e.target.value.trim().toLowerCase();
         if (!search) {
             setPosts(mostUpvoted);
@@ -72,9 +75,9 @@ const Home = ({color}) => {
     }
     return (
         <div>
-            <div className="filter"  style={{ backgroundColor: bgColor }}>
+            <div className="filter" style={{ backgroundColor: bgColor }}>
                 <div className="filter-search">
-                    <input type="text" placeholder="Search" onChange={handleSearch} />     
+                    <input type="text" placeholder="Search" onChange={handleSearch} />
                 </div>
                 <div className="filters-container">
                     <div className="filter-group">
@@ -89,15 +92,21 @@ const Home = ({color}) => {
                     </div>
                 </div>
             </div>
-            <div className="post">
-                {
-                    posts && posts.length > 0 ?
-                        posts.map((post) => (
-                            <PostCard id={post.id} title={post.title} time={post.created_at} upvotes={post.upvotes} type={post.type} author={post.author} />
-                        )) : <h2>💵No Posts Yet💵</h2>
-                }
+            {loading ?
+                <div className="loading">
+                    <span>Loading...</span>
+                    <div className="spinner"></div>
+                </div> :
+                <div className="post">
+                    {
+                        posts && posts.length > 0 ?
+                            posts.map((post) => (
+                                <PostCard id={post.id} title={post.title} time={post.created_at} upvotes={post.upvotes} type={post.type} author={post.author} />
+                            )) : <h2>💵No Posts Yet💵</h2>
+                    }
 
-            </div>
+                </div>
+            }
         </div>
     )
 }
