@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "../client";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import PostCard from "../components/PostCard";
 import "./Page.css";
 
 const Post = () => {
@@ -232,12 +233,16 @@ const Post = () => {
             <h2>Posted {calculatedTime(post.created_at)} {calculatedTime(post.created_at) > 1 ? "hours" : "hour"} ago</h2>
             <h1>{post.title}</h1>
             <p>{post.body}</p>
-            
+
             {post && post.imageURL ? (
               <MediaComponent />
             ) : (
-              <p>Loading media...</p>
+              null
             )}
+            {/* <div className=" className="embedded>
+            <PostCard id={id} time={post.created_at} title={post.title} upvotes={post.upvotes} type={post.type} author={post.author} />
+            </div> */}
+            
 
           </div>
           <div className="post-actions">

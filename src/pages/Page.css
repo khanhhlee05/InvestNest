@@ -77,13 +77,22 @@ body {
 
 /* Post container */
 .post-content {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
     background-color: #2a2a2a;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     color: #ddd;
+    padding: 5px;
+}
+.post-content .embedded {
+    padding: 10px; /* lower padding if it’s too large */
+  }
+  
+
+.embedded {
+    background-color: red;
 }
 
 .post-content h1 {
