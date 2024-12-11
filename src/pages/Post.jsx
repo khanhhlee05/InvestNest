@@ -52,7 +52,8 @@ const Post = () => {
                 .from("Comments")
                 .insert({
                     comments: event.target.value,
-                    postID: id
+                    postID: id,
+                    author: localStorage.getItem("uuid")
                 })
                 .select();
 
@@ -95,6 +96,11 @@ const Post = () => {
                 .from("Posts")
                 .delete()
                 .eq("id", id);
+            
+            await supabase
+                .from("Comments")
+                .delete()
+                .eq("postID", id);
 
             window.alert("Post deleted successfully!");
             window.location.href = "/"; 
@@ -198,6 +204,7 @@ const Post = () => {
             ) : (
                 <div>
                     <div className="post-content">
+                        <p>Posted by: {post.author}</p>
                         <h2>Posted {calculatedTime(post.created_at)} {calculatedTime(post.created_at) > 1 ? "hours" : "hour"} ago</h2>
                         <h1>{post.title}</h1>
                         <p>{post.body}</p>
@@ -220,7 +227,7 @@ const Post = () => {
                         <div className="comment-contents">
                             {comments.length > 0 ? comments.map((comment) => (
                                 <div>
-                                    <p>{comment.comments}</p>
+                                    <p>{comment.author}: {comment.comments}</p>
                                 </div>
                             )) : "Be the first the comment 🤔"}
                         </div>

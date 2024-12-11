@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 import "./components.css";
-const PostCard = ({ id, time, title, upvotes, type }) => {
+const PostCard = ({ id, time, title, upvotes, type, author }) => {
 
    
 
@@ -20,6 +20,7 @@ const PostCard = ({ id, time, title, upvotes, type }) => {
             <Link to={`/post/${id}`}> 
             <div className="post-card">
                 <div className="post-header">
+                    <p>Posted by: {author}</p>
                     <h2>Posted {calculatedTime(time)} {calculatedTime(time) > 1 ? "hours" : "hour"} ago</h2>
                 </div>
                 <div className="post-contents">

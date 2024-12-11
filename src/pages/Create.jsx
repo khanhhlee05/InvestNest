@@ -34,10 +34,11 @@ const Create = () => {
             return;
         }
         try{
+        const author = localStorage.getItem("uuid");    
         await supabase
             .from("Posts")
             .insert(
-                {title: title, body: body, imageURL: image, type: type, secretKey: secretKey}
+                {title: title, body: body, imageURL: image, type: type, secretKey: secretKey, author: author }
             )
             .select();
         
@@ -69,7 +70,7 @@ const Create = () => {
                     <option value="Opinion">Opinion</option>
                     <option value="Question">Question</option>
                 </select>
-                <input type="text" placeholder="Secret Key" value={secretKey} onChange={handleChangeSecretKey}/>
+                <input type="password" placeholder="Secret Key" value={secretKey} onChange={handleChangeSecretKey}/>
 
                 <input type="submit" onClick={handleSubmit} />
             </form>

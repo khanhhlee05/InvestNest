@@ -3,11 +3,12 @@ import PostCard from "../components/PostCard";
 import { supabase } from "../client";
 
 
-const Home = () => {
+const Home = ({color}) => {
 
     const [posts, setPosts] = useState([]);
     const [mostRecent, setMostRecent] = useState([]);
     const [mostUpvoted, setMostUpvoted] = useState([]);
+    const [bgColor, setBgColor] = useState("#1A1A1A")
     useEffect(() => {
         const fetchPost = async () => {
             const { data } = await supabase
@@ -24,9 +25,18 @@ const Home = () => {
             setMostRecent(data)
             setPosts(data);
         }
+        
         fetchPost();
 
-    }, [])
+        if (color === 'default') {
+            setBgColor("#1A1A1A")
+        } else if (color === 'bearish') {
+            setBgColor("#5C2E2E")
+        } else {
+            setBgColor("#2E5C2E")
+        }
+
+    }, [color])
 
     const handleMostRecent = () => {
         setPosts(mostRecent)
@@ -62,7 +72,7 @@ const Home = () => {
     }
     return (
         <div>
-            <div className="filter">
+            <div className="filter"  style={{ backgroundColor: bgColor }}>
                 <div className="filter-search">
                     <input type="text" placeholder="Search" onChange={handleSearch} />     
                 </div>
@@ -83,7 +93,7 @@ const Home = () => {
                 {
                     posts && posts.length > 0 ?
                         posts.map((post) => (
-                            <PostCard id={post.id} title={post.title} time={post.created_at} upvotes={post.upvotes} type={post.type} />
+                            <PostCard id={post.id} title={post.title} time={post.created_at} upvotes={post.upvotes} type={post.type} author={post.author} />
                         )) : <h2>💵No Posts Yet💵</h2>
                 }
 
