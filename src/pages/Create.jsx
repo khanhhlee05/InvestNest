@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Page.css";
 import { supabase } from "../client";   
-
+import { useParams } from "react-router-dom";
 
 const Create = () => {
     const [title, setTitle] = useState(""); 
@@ -10,7 +10,8 @@ const Create = () => {
     const [type, setType] = useState("Opinion");
     const [secretKey, setSecretKey] = useState("");
   
-
+    const {id} = useParams();
+    
     const handleChangeTitle = (e) => {
         setTitle(e.target.value);
     }
@@ -25,6 +26,7 @@ const Create = () => {
 
     const handleChangeType = (e) => {
         setType(e.target.value);
+        console.log(id)
     }
 
     const handleSubmit = async () => {
@@ -38,7 +40,7 @@ const Create = () => {
         await supabase
             .from("Posts")
             .insert(
-                {title: title, body: body, imageURL: image, type: type, secretKey: secretKey, author: author }
+                {title: title, body: body, imageURL: image, type: type, secretKey: secretKey, author: author, threaded: id }
             )
             .select();
         

@@ -101,7 +101,7 @@ const Home = ({ color }) => {
                     {
                         posts && posts.length > 0 ?
                             posts.map((post) => (
-                                <PostCard id={post.id} title={post.title} time={post.created_at} upvotes={post.upvotes} type={post.type} author={post.author} />
+                                <PostCard id={post.id} title={post.title} time={post.created_at} upvotes={post.upvotes} type={post.type} author={post.author} thread={post.threaded}/>
                             )) : <h2>💵No Posts Yet💵</h2>
                     }
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "../client";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import PostCard from "../components/PostCard";
+import Thread from "../components/Thread";
 import "./Page.css";
 
 const Post = () => {
@@ -239,9 +239,9 @@ const Post = () => {
             ) : (
               null
             )}
-            {/* <div className=" className="embedded>
-            <PostCard id={id} time={post.created_at} title={post.title} upvotes={post.upvotes} type={post.type} author={post.author} />
-            </div> */}
+            <div className=" className="embedded>
+              {post.threaded && <Thread id={post.threaded} />}
+            </div>
             
 
           </div>
@@ -249,6 +249,9 @@ const Post = () => {
             <div className="upvote">
               <h3>{post.upvotes} {post.upvotes === 1 ? "upvote" : "upvotes"}</h3>
               <button onClick={handleUpVote}>🚀</button>
+              <Link to={`/create/${id}`}>
+                <button>🔃</button>
+              </Link>
             </div>
             <div className="edit-delete">
               <Link to={`/update/${id}`}>

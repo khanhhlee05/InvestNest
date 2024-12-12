@@ -5,7 +5,7 @@ import Home from './pages/Home'
 import Create from './pages/Create'
 import Post from './pages/Post'
 import Update from './pages/Update'
-import { use } from 'react'
+
 
 
 function App() {
@@ -17,7 +17,13 @@ function App() {
     },
     {
       path: "/create",
-      element: <Create />
+      element: <Create />,
+      children: [
+        {
+          path: ":id",
+          element: <Create />
+        }
+      ]
     },
     {
       path: "/post/:id",
